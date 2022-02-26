@@ -1,11 +1,14 @@
 import "./App.css";
-import Keyboard from "./components/Keyboard";
+import Game from "./components/Game";
 
 function App() {
   const theWord = "SUPER";
   return (
     <div className="App">
-      <Keyboard />
+      <div className="header">
+        <h1>Mario-dle?</h1>
+      </div>
+      <Game />
     </div>
   );
 }

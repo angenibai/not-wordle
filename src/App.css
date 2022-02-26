@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+.header {
+  height: 60px;
+}
+
+h1 {
+  margin: 1rem 0;
+}

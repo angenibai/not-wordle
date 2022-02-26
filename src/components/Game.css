@@ -1,0 +1,66 @@
+.Game {
+  max-width: 500px;
+  margin: auto;
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+}
+
+.boardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.Board {
+  width: 350px;
+  height: 420px;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.boardRow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+}
+
+.boardTile {
+  display: inline-block;
+}
+
+.boardTileContent::before {
+  content: "";
+  display: inline-block;
+  padding-bottom: 100%;
+}
+
+.boardTileContent {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  line-height: 1rem;
+  font-weight: bold;
+  vertical-align: middle;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.boardTileContent[tilestate="empty"] {
+  border: 2px solid #d3d6da;
+}
+
+.boardTileContent[tilestate="await"] {
+  border: 2px solid #878a8c;
+  color: black;
+}
