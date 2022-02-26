@@ -1,0 +1,7 @@
+.Key {
+}
+
+.keyboardRow {
+  display: flex;
+  flex-direction: row;
+}
