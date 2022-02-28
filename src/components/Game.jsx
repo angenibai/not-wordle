@@ -21,8 +21,11 @@ Array.from(Array(26)).forEach((e, i) => {
 });
 
 const Game = () => {
+  // eslint-disable-next-line
   const [boardStates, setBoardStates] = useState(startingBoardStates);
+  // eslint-disable-next-line
   const [boardLetters, setBoardLetters] = useState(startingBoardLetters);
+  // eslint-disable-next-line
   const [letterStates, setLetterStates] = useState(startingLetterStates);
   const [curRow, setCurRow] = useState(0);
   const [curCol, setCurCol] = useState(0);
