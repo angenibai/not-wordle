@@ -1,0 +1,37 @@
+.Modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  max-width: 250px;
+  height: auto;
+  z-index: 10;
+  border-radius: 1rem;
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalClose {
+  display: none;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.modalContent {
+  font-size: 1.3rem;
+  margin: 2rem auto;
+  margin-top: 0;
+  padding: 0 2rem;
+}
+
+.closeButton {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
