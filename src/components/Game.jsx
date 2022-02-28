@@ -24,40 +24,6 @@ const Game = () => {
   const [alertIsOpen, setAlertIsOpen] = useState(false);
   const alertOnClose = () => setAlertIsOpen(false);
 
-  const insertInBoard = (board, updateBoard, newElement, i, j) => {
-    if (i >= N_ROWS || j >= N_COLS) {
-      console.log(`Cannot insert at ${i} ${j}`);
-      return;
-    }
-    const newBoard = Array.from({ length: N_ROWS }, () =>
-      Array.from({ length: N_COLS }, () => "")
-    );
-    for (let i2 = 0; i2 < N_ROWS; i2++) {
-      for (let j2 = 0; j2 < N_COLS; j2++) {
-        newBoard[i2][j2] = i === i2 && j === j2 ? newElement : board[i2][j2];
-      }
-    }
-
-    updateBoard(newBoard);
-  };
-
-  const insertRowInBoard = (board, updateBoard, newRow, i) => {
-    if (i >= N_ROWS) {
-      console.log(`Cannot insert at row ${i}`);
-      return;
-    }
-    const newBoard = Array.from({ length: N_ROWS }, () =>
-      Array.from({ length: N_COLS }, () => "")
-    );
-    for (let i2 = 0; i2 < N_ROWS; i2++) {
-      for (let j2 = 0; j2 < N_COLS; j2++) {
-        newBoard[i2][j2] = i === i2 ? newRow[j2] : board[i2][j2];
-      }
-    }
-
-    updateBoard(newBoard);
-  };
-
   const onKeyClick = (key) => {
     if (gameState !== "ongoing") return;
 
@@ -67,25 +33,19 @@ const Game = () => {
         // check that word is in list
         if (wordsSet.has(guessed.toLowerCase())) {
           // update states for guessed letters
-          const updatedRowStates = boardLetters[curRow].map((letter) => {
+          boardLetters[curRow].forEach((letter, j) => {
             const posInTheWord = theWord.indexOf(letter);
             if (posInTheWord === -1) {
               // not in the word
-              return "absent";
+              boardStates[curRow][j] = "absent";
             } else if (posInTheWord === guessed.indexOf(letter)) {
               // in the correct position
-              return "correct";
+              boardStates[curRow][j] = "correct";
             } else {
               // in the incorrect position
-              return "present";
+              boardStates[curRow][j] = "present";
             }
           });
-          insertRowInBoard(
-            boardStates,
-            setBoardStates,
-            updatedRowStates,
-            curRow
-          );
 
           // end game if the word is correct
           if (guessed === theWord) {
@@ -103,15 +63,15 @@ const Game = () => {
     } else if (key === "DEL") {
       // only delete if there are letters left on the board
       if (curCol > 0) {
-        insertInBoard(boardLetters, setBoardLetters, "", curRow, curCol - 1);
-        insertInBoard(boardStates, setBoardStates, "empty", curRow, curCol - 1);
+        boardLetters[curRow][curCol - 1] = "";
+        boardStates[curRow][curCol - 1] = "empty";
         setCurCol(curCol - 1);
       }
     } else {
       // only add letter if there is space
       if (curCol < N_COLS) {
-        insertInBoard(boardLetters, setBoardLetters, key, curRow, curCol);
-        insertInBoard(boardStates, setBoardStates, "await", curRow, curCol);
+        boardLetters[curRow][curCol] = key;
+        boardStates[curRow][curCol] = "await";
         setCurCol(curCol + 1);
       }
     }
