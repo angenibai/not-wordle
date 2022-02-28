@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./Game.css";
-import Keyboard from "./Keyboard";
 import { theWord, wordsSet } from "../Variables";
 import Modal from "./Modal";
 
@@ -15,9 +14,16 @@ const startingBoardLetters = Array.from({ length: N_ROWS }, () =>
   Array.from({ length: N_COLS }, () => "")
 );
 
+const startingLetterStates = {};
+Array.from(Array(26)).forEach((e, i) => {
+  const letter = String.fromCharCode(i + 65);
+  startingLetterStates[letter] = "open";
+});
+
 const Game = () => {
   const [boardStates, setBoardStates] = useState(startingBoardStates);
   const [boardLetters, setBoardLetters] = useState(startingBoardLetters);
+  const [letterStates, setLetterStates] = useState(startingLetterStates);
   const [curRow, setCurRow] = useState(0);
   const [curCol, setCurCol] = useState(0);
   const [gameState, setGameState] = useState("ongoing");
@@ -38,18 +44,29 @@ const Game = () => {
             if (posInTheWord === -1) {
               // not in the word
               boardStates[curRow][j] = "absent";
-            } else if (posInTheWord === guessed.indexOf(letter)) {
+              letterStates[letter] += " absent";
+            } else if (posInTheWord === j) {
               // in the correct position
               boardStates[curRow][j] = "correct";
-            } else {
-              // in the incorrect position
+              letterStates[letter] += " correct";
+            } else if (boardLetters[curRow][posInTheWord] !== letter) {
+              // letter exists but is in the incorrect position
               boardStates[curRow][j] = "present";
+              letterStates[letter] += " present";
+            } else {
+              // letter has already been placed in the correct position
+              boardStates[curRow][j] = "absent";
+              letterStates[letter] += " absent";
             }
           });
 
           // end game if the word is correct
           if (guessed === theWord) {
             setGameState("won");
+            setAlertIsOpen(true);
+          } else if (curRow === N_ROWS - 1) {
+            // game lost
+            setGameState("lost");
             setAlertIsOpen(true);
           }
 
@@ -77,6 +94,12 @@ const Game = () => {
     }
   };
 
+  const keyboardRows = [
+    ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+    ["", "A", "S", "D", "F", "G", "H", "J", "K", "L", ""],
+    ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "DEL"],
+  ];
+
   return (
     <div className="Game">
       <div className="boardContainer">
@@ -89,6 +112,7 @@ const Game = () => {
           <div className="modalContent">
             {gameState === "ongoing" && "Not in the word list!"}
             {gameState === "won" && "You won!"}
+            {gameState === "lost" && "You lost! Refresh to restart"}
           </div>
         </Modal>
         <div className="Board">
@@ -109,7 +133,28 @@ const Game = () => {
           ))}
         </div>
       </div>
-      <Keyboard clickedCallback={onKeyClick} />
+      <div className="Keyboard">
+        {keyboardRows.map((row, idx) => (
+          <div className="keyboardRow" key={`row${idx}`}>
+            {row.map((letter, idx) => {
+              if (letter === "") {
+                return <div className="keySpacer" key={`spacer${idx}`}></div>;
+              } else {
+                return (
+                  <div
+                    className={`Key ${letter.length > 1 && "wideKey"}`}
+                    tilestate={letterStates[letter]}
+                    key={letter}
+                    onClick={() => onKeyClick(letter)}
+                  >
+                    <span>{letter}</span>
+                  </div>
+                );
+              }
+            })}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

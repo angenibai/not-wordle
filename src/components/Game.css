@@ -1,3 +1,47 @@
+:root {
+  --key-bg: #d3d6da;
+}
+
+.Key {
+  font-weight: bold;
+  border: 0;
+  padding: 0;
+  margin: 0 6px 0 0;
+  height: 58px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--key-bg);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0, 0.3);
+}
+
+.wideKey {
+  flex: 1.5;
+  font-size: 0.8rem;
+}
+
+.keySpacer {
+  flex: 0.5;
+}
+
+.keyboardRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 auto 8px;
+  touch-action: manipulation;
+}
+
+.Keyboard {
+  margin: 0 8px;
+  user-select: none;
+  height: 200px;
+}
+
 .Game {
   max-width: 500px;
   margin: auto;
@@ -56,26 +100,26 @@
   user-select: none;
 }
 
-.boardTileContent[tilestate="empty"] {
+div[tilestate~="empty"] {
   border: 2px solid #d3d6da;
 }
 
-.boardTileContent[tilestate="await"] {
+div[tilestate~="await"] {
   border: 2px solid #878a8c;
   color: black;
 }
 
-.boardTileContent[tilestate="absent"] {
+div[tilestate~="absent"] {
   color: white;
   background-color: #787c7e;
 }
 
-.boardTileContent[tilestate="correct"] {
-  color: white;
-  background-color: #6aaa64;
-}
-
-.boardTileContent[tilestate="present"] {
+div[tilestate~="present"] {
   color: white;
   background-color: #c9b458;
+}
+
+div[tilestate~="correct"] {
+  color: white;
+  background-color: #6aaa64;
 }
