@@ -109,7 +109,7 @@ const Game = () => {
         <Modal isOpen={alertIsOpen}>
           <div className="modalHeader">
             <div className="closeButton" onClick={alertOnClose}>
-              ✖
+              X
             </div>
           </div>
           <div className="modalContent">

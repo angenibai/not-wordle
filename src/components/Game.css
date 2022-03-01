@@ -37,7 +37,7 @@
 }
 
 .Keyboard {
-  margin: 0 8px;
+  margin: 16px 8px;
   user-select: none;
   height: 200px;
 }
