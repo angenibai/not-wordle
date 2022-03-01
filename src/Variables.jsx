@@ -1,6 +1,8 @@
 export const theWord = "SUPER";
 
 export const words = [
+  "mario",
+  "wario",
   "women",
   "nikau",
   "swack",
