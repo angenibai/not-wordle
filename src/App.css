@@ -4,7 +4,10 @@
 
 .header {
   height: 60px;
-  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  background-color: var(--sky);
+  color: white;
+  text-shadow: 4px 3px black;
 }
 
 h1 {
