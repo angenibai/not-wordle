@@ -2,7 +2,8 @@
   --key-bg: #d3d6da;
   --brick: #c84c0c;
   --sky: #5d94fb;
-  --gold: #fc9838;
+  --gold: #fbb84e;
+  --pink: #f7d1c8;
 }
 
 .Key {
@@ -13,7 +14,7 @@
   height: 58px;
   border-radius: 4px;
   cursor: pointer;
-  background-color: var(--key-bg);
+  background-color: var(--pink);
   flex: 1;
   display: flex;
   justify-content: center;
@@ -65,7 +66,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .Board {
@@ -89,14 +90,17 @@
   display: inline-block;
 }
 
+/*
 .boardTileContent::before {
   content: "";
   display: inline-block;
   padding-bottom: 100%;
 }
+*/
 
 .boardTileContent {
   width: 100%;
+  height: 100%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -111,20 +115,14 @@
 }
 
 .boardTileContent[tilestate~="empty"] {
-  border: 4px solid black;
-  background-color: var(--brick);
-  border: 3px solid var(--brick);
+  border: 3px outset var(--brick);
   background-color: var(--gold);
 }
 
 div[tilestate~="await"] {
-  border: 3px solid var(--brick);
+  border: 3px outset var(--brick);
   background-color: var(--gold);
   color: var(--brick);
-  /*
-  border: 2px solid #878a8c;
-  color: black;
-  */
 }
 
 div[tilestate~="absent"] {
