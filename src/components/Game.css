@@ -1,5 +1,9 @@
 :root {
   --key-bg: #d3d6da;
+  --brick: #c84c0c;
+  --sky: #5d94fb;
+  --gold: #fbb84e;
+  --pink: #f7d1c8;
 }
 
 .Key {
@@ -10,13 +14,17 @@
   height: 58px;
   border-radius: 4px;
   cursor: pointer;
-  background-color: var(--key-bg);
+  background-color: var(--pink);
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0, 0.3);
+}
+
+.Key:last-child {
+  margin: 0;
 }
 
 .wideKey {
@@ -37,9 +45,10 @@
 }
 
 .Keyboard {
-  margin: 0 8px;
+  padding: 16px 8px;
   user-select: none;
   height: 200px;
+  background-color: var(--brick);
 }
 
 .Game {
@@ -49,6 +58,7 @@
   height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
+  background-color: var(--sky);
 }
 
 .boardContainer {
@@ -56,7 +66,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .Board {
@@ -80,33 +90,43 @@
   display: inline-block;
 }
 
+/*
 .boardTileContent::before {
   content: "";
   display: inline-block;
   padding-bottom: 100%;
 }
+*/
 
 .boardTileContent {
   width: 100%;
+  height: 100%;
   display: inline-flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   font-size: 2rem;
-  line-height: 1rem;
   font-weight: bold;
   vertical-align: middle;
   box-sizing: border-box;
   text-transform: uppercase;
   user-select: none;
+  text-shadow: 4px 3px black;
 }
 
-div[tilestate~="empty"] {
-  border: 2px solid #d3d6da;
+.boardTileContent[tilestate~="empty"] {
+  border: 3px solid var(--brick);
+  border-bottom-color: black;
+  border-right-color: black;
+  background-color: var(--gold);
 }
 
 div[tilestate~="await"] {
-  border: 2px solid #878a8c;
-  color: black;
+  border: 3px solid var(--brick);
+  border-bottom-color: black;
+  border-right-color: black;
+  background-color: var(--gold);
+  color: var(--brick);
 }
 
 div[tilestate~="absent"] {
@@ -122,4 +142,27 @@ div[tilestate~="present"] {
 div[tilestate~="correct"] {
   color: white;
   background-color: #6aaa64;
+}
+
+.nails {
+  font-size: 0.5rem;
+  text-shadow: none;
+  color: var(--brick);
+  display: flex;
+  width: 100%;
+}
+
+.dot {
+  flex: 1;
+  width: fit-content;
+}
+
+.dotSpacer {
+  flex: 3;
+}
+
+.boardTileContent[tilestate~="absent"] .dot,
+.boardTileContent[tilestate~="present"] .dot,
+.boardTileContent[tilestate~="correct"] .dot {
+  display: none;
 }

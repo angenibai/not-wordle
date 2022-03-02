@@ -7,11 +7,24 @@
   max-width: 250px;
   height: auto;
   z-index: 10;
-  border-radius: 1rem;
-  background: black;
-  color: white;
   display: flex;
   flex-direction: column;
+}
+
+.modalBlack {
+  border-radius: 0.4rem;
+  background: black;
+  color: white;
+}
+
+.modalBrick {
+  background-color: var(--brick);
+  border-width: 4px;
+  border-style: solid;
+  border-bottom-color: black;
+  border-right-color: black;
+  border-top-color: var(--pink);
+  border-left-color: var(--pink);
 }
 
 .modalClose {
@@ -32,6 +45,7 @@
 
 .closeButton {
   margin-right: 0.5rem;
+  margin-top: 0.7rem;
   font-size: 1.5rem;
   cursor: pointer;
 }

@@ -4,6 +4,12 @@
 
 .header {
   height: 60px;
+  padding-top: 1.5rem;
+  background-color: var(--sky);
+  color: white;
+  text-shadow: 4px 3px black;
+  max-width: 500px;
+  margin: auto;
 }
 
 h1 {
