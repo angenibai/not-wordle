@@ -2,6 +2,7 @@ export const theWord = "SUPER";
 
 export const words = [
   "mario",
+  "luigi",
   "wario",
   "women",
   "nikau",
