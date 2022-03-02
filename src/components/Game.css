@@ -55,7 +55,7 @@
   max-width: 500px;
   margin: auto;
   width: 100%;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 84px);
   display: flex;
   flex-direction: column;
   background-color: var(--sky);
@@ -89,14 +89,6 @@
 .boardTile {
   display: inline-block;
 }
-
-/*
-.boardTileContent::before {
-  content: "";
-  display: inline-block;
-  padding-bottom: 100%;
-}
-*/
 
 .boardTileContent {
   width: 100%;

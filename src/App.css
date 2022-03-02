@@ -4,7 +4,7 @@
 
 .header {
   height: 60px;
-  padding-top: 1.5rem;
+  padding-top: 24px;
   background-color: var(--sky);
   color: white;
   text-shadow: 4px 3px black;
