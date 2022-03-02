@@ -37,7 +37,7 @@ const Game = () => {
     if (gameState !== "ongoing") return;
 
     if (key === "ENTER") {
-      if (curRow < N_ROWS) {
+      if (curRow < N_ROWS && curCol === N_COLS) {
         const guessed = boardLetters[curRow].join("");
         // check that word is in list
         if (wordsSet.has(guessed.toLowerCase())) {
@@ -128,7 +128,17 @@ const Game = () => {
                     key={`tilecontent-${i}-${j}`}
                     tilestate={boardStates[i][j]}
                   >
+                    <div className="nails nailsTop">
+                      <div className="dot">•</div>
+                      <div className="dotSpacer"></div>
+                      <div className="dot">•</div>
+                    </div>
                     {letter}
+                    <div className="nails nailsBottom">
+                      <div className="dot">•</div>
+                      <div className="dotSpacer"></div>
+                      <div className="dot">•</div>
+                    </div>
                   </div>
                 </div>
               ))}
